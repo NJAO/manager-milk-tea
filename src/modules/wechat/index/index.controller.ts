@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { IndexService } from './index.service';
 
@@ -15,7 +16,7 @@ export class IndexController {
   constructor(private readonly indexService: IndexService) {}
 
   @Get()
-  fetch(@Query() { id }): string {
+  fetch(@Query('id', new ParseIntPipe()) { id }): string {
     return this.indexService.fetch(id);
   }
 
