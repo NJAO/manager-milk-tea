@@ -1,4 +1,4 @@
-import { Injectable, Request } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from 'passport-jwt';
 
 @Injectable()
@@ -14,9 +14,9 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any): Promise<any> {
+  async login(code: string): Promise<any> {
     // 登录校验
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { code };
     return { access_token: this.jwtService.sign(payload) };
   }
 }
